@@ -39,9 +39,8 @@
             this.nome = nome;
             this.especie = especie;
             this.idade = idade;
-
             this.falar = function() {
-                return `Oi, eu sou ${this.nome} e sou um ${this.especie}`;
+                return `Oi, eu sou ${this.nome} sou um ${this.especie} e tenho ${this.idade} anos (idade humana: ${this.idadeHumana()})`;
             };
 
             this.idadeHumana = function() {
@@ -58,7 +57,7 @@
         const meusPets = [];
 
         // Cadastrar pet pelo formulário
-        document.getElementById("formPet").addEventListener("submit", function(event) {
+        document.getElementById("formPet").addEventListener("submit", event =>{
             event.preventDefault();
             const nome = document.getElementById("nome").value;
             const especie = document.getElementById("especie").value;
@@ -75,16 +74,16 @@
             meusPets.push(novoPet);
             alert(`Pet ${nome} cadastrado com sucesso!`);
 
-            console.log("Lista atual de pets cadastrados:", meusPets);
+            console.log(novoPet.falar())
         }
 
         //Buscar pelo nome do pet
         function buscarPet(nome) {
             const petEncontrado = meusPets.find(pet => pet.nome.toLowerCase() === nome.toLowerCase());
             if (petEncontrado) {
-                alert(`Pet encontrado: ${petEncontrado.falar()} e tem ${petEncontrado.idadeHumana()} anos humanos.`);
+                console.log(`Pet encontrado: ${petEncontrado.falar()} e tenho ${petEncontrado.idadeHumana()} anos humanos.`);
             } else {
-                alert("Pet não encontrado.");
+                console.log("Pet não encontrado.");
             }
         }
     </script>
