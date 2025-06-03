@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Veterinária SenaiPet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Clínica Veterinária SenaiPet</h1>
+
+    <!-- Formulário para cadastro de pets -->
+    <form id="formPet">
+        <h3>Cadastrar novo pet:</h3>
+        <input type="text" id="nome" placeholder="Nome do pet" required>
+        <select id="especie" required>
+            <option value="">Selecione a espécie</option>
+            <option value="Cachorro">Cachorro</option>
+            <option value="Gato">Gato</option>
+            <option value="Coelho">Coelho</option>
+            <option value="Outro">Outro</option>
+        </select>
+        <input type="number" id="idade" placeholder="Idade do pet (anos)" min="0" required>
+        <button type="submit">Cadastrar Pet</button>
+    </form>
+
+
+    <!-- Container onde os pets serão exibidos -->
+    <div id="petsContainer"></div>
+
+    <script>
+        // Construtor do objeto Pet
+        function Pet(nome, especie, idade) {
+            this.nome = nome;
+            this.especie = especie;
+            this.idade = idade;
+
+            this.falar = function() {
+                return `Oi, eu sou ${this.nome} e sou um ${this.especie}`;
+            };
+
+            this.idadeHumana = function() {
+                if (this.especie === "Cachorro") {
+                    return this.idade * 7;
+                } else if (this.especie === "Gato") {
+                    return this.idade * 6;
+                } else {
+                    return this.idade * 5;
+                }
+            };
+        }
+
+        const meusPets = [];
+
+        // Cadastrar pet pelo formulário
+        document.getElementById("formPet").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const nome = document.getElementById("nome").value;
+            const especie = document.getElementById("especie").value;
+            const idade = parseInt(document.getElementById("idade").value);
+
+            cadastrarPet(nome, especie, idade);
+
+            // Limpa os campos
+            this.reset();
+        });
+
+        function cadastrarPet(nome, especie, idade) {
+            const novoPet = new Pet(nome, especie, idade);
+            meusPets.push(novoPet);
+            alert(`Pet ${nome} cadastrado com sucesso!`);
+
+            console.log("Lista atual de pets cadastrados:", meusPets);
+        }
+
+
+    </script>
+</body>
+</html>
