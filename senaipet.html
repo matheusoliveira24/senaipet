@@ -23,7 +23,12 @@
         <input type="number" id="idade" placeholder="Idade do pet (anos)" min="0" required>
         <button type="submit">Cadastrar Pet</button>
     </form>
-
+    <br>
+    <br>
+    <form id="formBuscar">
+        <h3>Buscar pet pelo nome:</h3>
+        <input type="text" id="nomeBuscar" placeholder="Nome do pet" required>
+        <button type="button" onclick="buscarPet(document.getElementById('nomeBuscar').value)">Buscar Pet</button>
 
     <!-- Container onde os pets serão exibidos -->
     <div id="petsContainer"></div>
@@ -73,7 +78,15 @@
             console.log("Lista atual de pets cadastrados:", meusPets);
         }
 
-
+        //Buscar pelo nome do pet
+        function buscarPet(nome) {
+            const petEncontrado = meusPets.find(pet => pet.nome.toLowerCase() === nome.toLowerCase());
+            if (petEncontrado) {
+                alert(`Pet encontrado: ${petEncontrado.falar()} e tem ${petEncontrado.idadeHumana()} anos humanos.`);
+            } else {
+                alert("Pet não encontrado.");
+            }
+        }
     </script>
 </body>
 </html>
